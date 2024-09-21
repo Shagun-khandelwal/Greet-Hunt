@@ -21,25 +21,25 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    wishlist: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Greets'
-    }],
+    totalWishlistItem: {
+        type: Number,
+        default: 0
+    },
     emailVerified: {
         type: Boolean,
         default: false
     },
     emailVerificationOTP: {
-        type:String
+        type: String
     },
-    emailVerificationExpires:{
-        type:Date
+    emailVerificationExpires: {
+        type: Date
     },
-    resetPasswordOTP:{
-        type:String
+    resetPasswordOTP: {
+        type: String
     },
-    resetPasswordExpires:{
-        type:Date
+    resetPasswordExpires: {
+        type: Date
     }
 });
 

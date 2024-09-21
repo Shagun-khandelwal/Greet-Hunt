@@ -13,9 +13,6 @@ const GreetSchema = mongoose.Schema({
     like_count:{
         type: Number
     },
-    liked_by :{
-        type: Array
-    },
     greet_image: {
         type: String
     }

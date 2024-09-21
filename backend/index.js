@@ -17,16 +17,25 @@ app.get("/",(req,res)=>{
     })
 });
 
+//Greet route handler
 const greetController = require("./server/controllers/greetController");
 app.use('/upload/images',greetController);
 
+//user route handler
 const userController = require("./server/controllers/userController");
 app.use("/api/users",userController);
 
+//like component route handler
+const likesController = require("./server/controllers/likesController");
+app.use('/api/liked',likesController);
+
+//wishlist component route handler
+const wishlistController = require("./server/controllers/wishlistController");
+app.use('/api/wishlist',wishlistController);
 
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("Database connection successful."))
     .catch((e) => console.error(e.message))
 
 
-    app.listen(process.env.PORT, () => console.log(`sever is running at port ${process.env.PORT}`));
+    app.listen(process.env.PORT, () => console.log(`server is running at port ${process.env.PORT}`));

@@ -6,7 +6,7 @@ const Greets = require("../models/greetSchema");
 //get All Data of Likes Schema
 router.get("/", async (req, res) => {
     const AllLikes = await Likes.find({});
-    res.json({ success: true, count: AllLikes.length, data: AllLikes });
+    res.status(200).json({ success: true, count: AllLikes.length, data: AllLikes });
 });
 //Route to add a Like
 router.post("/like", async (req, res) => {
@@ -52,6 +52,10 @@ router.delete("/unlike", async (req, res) => {
 router.get("/likes/:greet_id", async (req, res) => {
     try {
         const { greet_id } = req.params;
+        const greet = await Greets.findOne({_id:greet_id});
+        if(!greet){
+            return res.status(400).json({success:false,message:"The image with the given id not found"});
+        }
         const likes = await Likes.find({ greet_id }).populate("user_id","name email").select("-greet_id -_id -liked_at -__v");
         var email_arr=[];
         likes.forEach(ele => {

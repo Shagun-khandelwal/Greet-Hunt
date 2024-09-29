@@ -134,14 +134,10 @@ exports.colour = [
     "Purple",
     "Orange"
 ];
-// exports.tags = [
-//     "ballons",
-//     "cake",
-//     "quote",
-//     "light",
-//     "dark",
-//     "celebration",
-//     "colors",
-//     "sparkles",
-//     "diya"
-// ];
+exports.profileAvtar=[
+"https://profile-photo-upload.s3.ap-south-1.amazonaws.com/1.jpg",
+"https://profile-photo-upload.s3.ap-south-1.amazonaws.com/2.jpg",
+"https://profile-photo-upload.s3.ap-south-1.amazonaws.com/3.jpg"
+];
+
+

@@ -13,6 +13,10 @@ router.get("/", async (req, res) => {
 //route to get all the item present in a user's wishlist
 router.get('/userwishlist/:user_id',async (req,res)=>{
     const {user_id} = req.params;
+    const user = await Users.findOne({_id:user_id});
+    if(!user){
+        return res.status(400).json({success:false,message:"user not found!"});
+    }
     var wishlist_arr = [];
     const wishlist = await Wishlist.find({user_id}).select("-__v -added_at -user_id -_id");
     wishlist.forEach(ele=>{

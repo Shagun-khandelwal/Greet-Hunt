@@ -33,6 +33,9 @@ app.use('/api/liked',likesController);
 const wishlistController = require("./server/controllers/wishlistController");
 app.use('/api/wishlist',wishlistController);
 
+//festive component route handler
+const festiveController = require("./server/controllers/festiveController");
+app.use("/api/festives",festiveController);
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("Database connection successful."))
     .catch((e) => console.error(e.message))

@@ -264,7 +264,7 @@ router.delete("/deleteGreet/:greet_id", async (req, res) => {
         const { greet_id } = req.params;
         const greet = await Greets.findOne({ _id: greet_id });
         if (!greet) {
-            return res.status(200).json({ success: false, message: "Greet not found!" });
+            return res.status(400).json({ success: false, message: "Greet not found!" });
         }
         if (greet.like_count > 0) {
             const Like_arr = await Liked.deleteMany({ greet_id });
@@ -277,8 +277,8 @@ router.delete("/deleteGreet/:greet_id", async (req, res) => {
         });
         //delete from aws s3 bucket
         const imageUrl = greet.greet_image;
-        const imageUrlMatch = imageUrl.match(/(Image-\d+\.jpeg)/);
-        const imageName = imageUrlMatch[0];
+        const imageUrlIndex = imageUrl.indexOf("amazonaws.com");
+        const imageName = imageUrl.slice(imageUrlIndex+"amazonaws.com".length + 1);
         const params = {
             Bucket: process.env.AWS_BUCKET_NAME, // bucket that we made earlier
             Key: imageName // Name of the image            

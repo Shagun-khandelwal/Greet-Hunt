@@ -3,6 +3,10 @@ const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const Schema = mongoose.Schema;
 const UserSchema = mongoose.Schema({
+    profile_photo:{
+        type:String,
+        required:true
+    },
     name: {
         type: String,
         required: true
